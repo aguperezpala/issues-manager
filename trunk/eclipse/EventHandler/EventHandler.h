@@ -20,7 +20,7 @@ class EventHandler {
 
 
 public:
-	EventHandler *getInstance();
+	static EventHandler *getInstance();
 
 	/* Subscribe an EventID with a EventHandlerObject
 	 * REQUIRES:
@@ -46,23 +46,20 @@ public:
 	 * 		data	!= NULL (the payload of the event)
 	 * RETURNS:
 	 * 		errCode (0 on success | < 0 if error)
+	 * NOTE: this will use the same thread of the event emitter. And the
+	 * EventArg used its automatically freed (but no the data itself)
 	 */
-	int emitEvent(const std::string &toID, EventHandlerObject *eho, void *data);
-
-
-
-
-
-
+	int emitEvent(const std::string &toID, int type, EventHandlerObject *eho, void *data);
 
 
 private:
 	EventHandler();
 	~EventHandler();
 
-	/* this will be the hash used to send events from one obeject to other */
-	std::multimap<std::string, EventHandlerObject*>;
+	/* this will be the hash used to send events from one object to other */
+	std::multimap<std::string, EventHandlerObject*> eventMapper;
 
+	/* the singleton instance */
 	static EventHandler *instance;
 };
 

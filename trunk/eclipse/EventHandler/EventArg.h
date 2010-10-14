@@ -7,6 +7,7 @@
 typedef struct eventArg_ {
 	std::string emitterID;	// the ID (eventID) of the event emitter
 	std::string receiverID;	// the eventID of the event receiver
+	int eventType;
 	void *data;				// the argument pass throw the event
 } eventArg_t;
 
