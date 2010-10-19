@@ -15,9 +15,11 @@
 #include "EventHandlerObject.h"
 #include "EventArg.h"
 
+
+class EventHandlerObject;
+
 /* this is a singleton class */
 class EventHandler {
-
 
 public:
 	static EventHandler *getInstance();

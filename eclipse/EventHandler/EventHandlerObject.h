@@ -34,7 +34,7 @@ public:
 	 *	RETURNS:
 	 *		errCode
 	 */
-	virtual int handleEvent(const eventArg_t &arg){};
+	virtual int handleEvent(const eventArg_t &arg){return 0;};
 
 protected:
 

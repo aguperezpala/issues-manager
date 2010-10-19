@@ -1,6 +1,6 @@
 #include "EventHandler.h"
 
-EventHandler EventHandler::instance = NULL;
+EventHandler *EventHandler::instance = NULL;
 
 EventHandler::EventHandler()
 {
@@ -18,12 +18,12 @@ EventHandler::~EventHandler()
  * ENSURES:
  * 		instance != NULL
  */
-static EventHandler *EventHandler::getInstance()
+EventHandler *EventHandler::getInstance()
 {
-	if(this->instance == NULL)
-		this->instance = new EventHandler();
+	if(EventHandler::instance == NULL)
+		EventHandler::instance = new EventHandler();
 
-	return this->instance;
+	return EventHandler::instance;
 }
 
 
@@ -107,7 +107,7 @@ int EventHandler::emitEvent(const std::string &toID, int type,
 	// fill the struct
 	args.data = data;
 	args.receiverID = toID;
-	args.emitterID = eho->getID();
+	args.emitterID = eho->getSubscribedID();
 	args.eventType = type;
 
 	// check if the eventID already exists..
