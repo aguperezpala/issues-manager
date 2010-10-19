@@ -41,6 +41,8 @@ void EventHandler::subscribeID(const std::string &eventID, EventHandlerObject *e
 	// check if the eventID already exists..
 	pIt = eventMapper.equal_range(eventID);
 
+	debug("New element %s suscribed \n", eventID.c_str());
+
 	for(it = pIt.first; it != pIt.second; ++it)
 		if((*it).second == eho)
 			// the element had suscribe with this id befor... return
@@ -67,6 +69,8 @@ int EventHandler::unsubscribeID(const std::string &eventID, EventHandlerObject *
 
 	// check if the eventID already exists..
 	pIt = eventMapper.equal_range(eventID);
+
+	debug("New element %s unsubscribed \n", eventID.c_str());
 
 	for(it = pIt.first; it != pIt.second; ++it)
 		if((*it).second == eho) {
@@ -96,7 +100,7 @@ int EventHandler::emitEvent(const std::string &toID, int type,
 			  std::multimap<std::string, EventHandlerObject*>::iterator> pIt;
 	std::multimap<std::string, EventHandlerObject*>::iterator it;
 	eventArg_t args = {};
-	int ret = 0;
+	int ret = -1;
 
 
 	if((&toID == NULL) || (eho == NULL)){
@@ -109,6 +113,9 @@ int EventHandler::emitEvent(const std::string &toID, int type,
 	args.receiverID = toID;
 	args.emitterID = eho->getSubscribedID();
 	args.eventType = type;
+
+	debug("New event emmited from %s  to %s \n", args.emitterID.c_str(),
+			toID.c_str());
 
 	// check if the eventID already exists..
 	pIt = eventMapper.equal_range(toID);
