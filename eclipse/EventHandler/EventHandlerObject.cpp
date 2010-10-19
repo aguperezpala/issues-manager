@@ -7,7 +7,7 @@
 
 #include "EventHandlerObject.h"
 
-EventHandlerObject::EventHandlerObject() {
+EventHandlerObject::EventHandlerObject() : id("") {
 	// TODO Auto-generated constructor stub
 
 }
@@ -27,7 +27,7 @@ EventHandlerObject::~EventHandlerObject() {
  *
  * NOTE: this functions does not use a new thread..
  */
-int EventHandlerObject::emmitEvent(void *data, const std::string &destID, int type)
+int EventHandlerObject::emitEvent(void *data, const std::string &destID, int type)
 {
 	EventHandler *instance = EventHandler::getInstance();
 

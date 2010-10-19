@@ -20,8 +20,11 @@ public:
 	EventHandlerObject();
 	~EventHandlerObject();
 
-	/* get the ID */
-	const std::string &getID(void){return this->id;};
+	/* get the subscribed ID */
+	const std::string &getSubscribedID(void){return this->id;};
+
+	/* Set the subscribed ID */
+	void setSusbscribedID(const std::string &Id);
 
 	/*! Virtual method to reimplement in the class wich will be able to
 	 * receive events..
@@ -35,7 +38,7 @@ public:
 
 protected:
 
-	/* Emmit a signal from this object to the event Handler
+	/* Emit a signal from this object to the event Handler
 	 * REQUIRES:
 	 * 		data		to be sent by the EventHandler
 	 * 		id			the ID of the EventHandlerObject wich catch the event
@@ -45,7 +48,7 @@ protected:
 	 *
 	 * NOTE: this functions does not use a new thread..
 	 */
-	int emmitEvent(void *data, const std::string &destID, int type);
+	int emitEvent(void *data, const std::string &destID, int type);
 
 
 
