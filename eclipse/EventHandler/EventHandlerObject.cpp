@@ -13,8 +13,29 @@ EventHandlerObject::EventHandlerObject() : id("") {
 }
 
 EventHandlerObject::~EventHandlerObject() {
-	// TODO Auto-generated destructor stub
+	// TODO: Verify when there are multiple IDs
+	unsubscribeID();
 }
+
+void EventHandlerObject::SusbscribeID(const std::string &Id)
+{
+	if((&Id == NULL) || (Id.size() == 0)) {
+		debug("Trying to subscribe an empty id\n");
+		return;
+	}
+
+	id = Id;
+
+	// we probably want to verify if we have not set befor some id
+	// if the id is empty then set it, if not, then do nothing?
+	EventHandler::getInstance()->subscribeID(Id, this);
+}
+
+	/* Unsubscribe the actual id */
+	void EventHandlerObject::unsubscribeID(void)
+	{
+		EventHandler::getInstance()->unsubscribeID(id, this);
+	}
 
 
 /* Emmit a signal from this object to the event Handler

@@ -24,7 +24,10 @@ public:
 	const std::string &getSubscribedID(void){return this->id;};
 
 	/* Set the subscribed ID */
-	void setSusbscribedID(const std::string &Id);
+	void SusbscribeID(const std::string &Id);
+
+	/* Unsubscribe the actual id */
+	void unsubscribeID(void);
 
 	/*! Virtual method to reimplement in the class wich will be able to
 	 * receive events..
