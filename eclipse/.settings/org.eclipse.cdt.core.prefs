@@ -1,6 +1,14 @@
-#Tue Oct 12 22:41:20 ART 2010
+#Sun Oct 24 10:24:21 ART 2010
 eclipse.preferences.version=1
-indexer/filesToParseUpFront=cstdarg, stdarg.h, stddef.h, sys/resource.h, ctime, sys/types.h, signal.h, cstdio, string, map, stack, multimap, list
+environment/project/cdt.managedbuild.config.gnu.exe.debug.2083699653/CWD/delimiter=\:
+environment/project/cdt.managedbuild.config.gnu.exe.debug.2083699653/CWD/operation=replace
+environment/project/cdt.managedbuild.config.gnu.exe.debug.2083699653/CWD/value=/home/agustin/programacion/open-projects/issues-manager/eclipse/Debug
+environment/project/cdt.managedbuild.config.gnu.exe.debug.2083699653/PROJDIR/delimiter=\:
+environment/project/cdt.managedbuild.config.gnu.exe.debug.2083699653/PROJDIR/operation=replace
+environment/project/cdt.managedbuild.config.gnu.exe.debug.2083699653/PROJDIR/value=/home/agustin/programacion/open-projects/issues-manager/eclipse
+environment/project/cdt.managedbuild.config.gnu.exe.debug.2083699653/append=true
+environment/project/cdt.managedbuild.config.gnu.exe.debug.2083699653/appendContributed=true
+indexer/filesToParseUpFront=cstdarg, stdarg.h, stddef.h, sys/resource.h, ctime, sys/types.h, signal.h, cstdio, string, map, stack, multimap, list, pthread.h
 indexer/indexAllFiles=true
 indexer/indexUnusedHeadersWithAlternateLang=false
 indexer/indexUnusedHeadersWithDefaultLang=true
