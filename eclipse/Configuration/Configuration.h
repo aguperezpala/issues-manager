@@ -27,7 +27,7 @@
  * equal character, the comment character and the end string. The first one it
  * will be the character who divide the KEY_NAME of the VALUE_NAME
  * (the generally the = character). The second one will be used to specifies the
- * comments lines wich will be skipped when read it, and the third one, it will
+ * comments lines which will be skipped when read it, and the third one, it will
  * determine the end of the value (generally the '\n')
  */
 #define CONF_EQ_CHAR		'='
@@ -61,7 +61,7 @@ public:
 	 */
 	int saveToFile(const std::string &fname);
 
-	/* Here we will add useful functions to retreive differents kinds of values
+	/* Here we will add useful functions to retrieve different kinds of values
 	 * In all cases it will be returned true if success or false if not
 	 * REQUIRES:
 	 * 		key		the value key
@@ -106,7 +106,7 @@ private:
 	 */
 	int readFileContent(const std::string &fname, std::string &content);
 
-	/*
+	/* Function which create a list of lines to be parsed with the KEYNAME ^
 
 
 	/*						MEMBERS							*/
