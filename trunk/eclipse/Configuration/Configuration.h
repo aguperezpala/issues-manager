@@ -76,7 +76,8 @@ public:
 
 	/* Add new value to the configuration
 	 * REQUIRES:
-	 * 		key		The keyName of the value (IT SHOULD NOT EXISTS)
+	 * 		key		The keyName of the value (NOTE: if the key exists the value
+	 * 										  is replaced)
 	 * 		value	the value associated
 	 * RETURNS:
 	 * 		errCode
@@ -106,14 +107,31 @@ private:
 	 */
 	int readFileContent(const std::string &fname, std::string &content);
 
-	/* Function which create a list of lines to be parsed with the KEYNAME ^
+	/* Function which create a list of lines to be parsed which contains the
+	 * the two Characters, the equal and the end char.
+	 * RETURNS:
+	 * 		numLines	the number of lines to be parsed
+	 */
+	int getLinesToBeParsed(const std::string &content,
+			std::list<std::string> &lines);
+
+	/* Retrieve the keyname and the value associated from a line, using the
+	 * delimiters defined before.
+	 * REQUIRES:
+	 * 		line	to be parsed
+	 * 		key		[OUT] keyName parsed
+	 * 		value	[OUT] value of the keyName
+	 * RETURNS:
+	 * 		errCode
+	 */
+	int parseLine(const std::string &line, std::string &key, std::string &value);
 
 
 	/*						MEMBERS							*/
 	// configuration Name
 	std::string _name;
 	// we will map the values in a hash <KEY_NAME, VALUE>
-	map<std::string, std::string> _values;
+	std::map<std::string, std::string> _values;
 
 };
 
