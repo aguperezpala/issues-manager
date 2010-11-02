@@ -17,6 +17,7 @@
 #define CONFIGURATION_H_
 
 #include <map>
+#include <list>
 #include <string>
 #include <fstream>
 #include <sstream>
@@ -92,6 +93,12 @@ public:
 	 * 		false	otherwise
 	 */
 	bool exists(const std::string &key);
+
+	/* Removes a value from the configuration */
+	void removeValue(const std::string &key);
+
+	/* Get the number of values */
+	int getNumValues(void){return _values.size();};
 
 
 	// empty destructor

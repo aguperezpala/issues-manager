@@ -28,9 +28,9 @@ int Configuration::readFileContent(const std::string &fname, std::string &conten
 
 
 	// get length of file:
-	is.seekg (0, ios::end);
+	is.seekg (0, std::ios::end);
 	length = is.tellg();
-	is.seekg (0, ios::beg);
+	is.seekg (0, std::ios::beg);
 
 	// allocate memory:
 	buffer = new char[length];
@@ -126,9 +126,6 @@ int Configuration::parseLine(const std::string &line, std::string &key,
 	return 0;
 }
 
-}
-
-
 
 /*						PUBLIC	FUNCTIONS						*/
 
@@ -221,8 +218,25 @@ bool Configuration::getValue(const std::string &key, int &value)
 
 	return true;
 }
-bool Configuration::getValue(const std::string &key, std::string &value);
-bool Configuration::getValue(const std::string &key, double &value);
+
+bool Configuration::getValue(const std::string &key, std::string &value)
+{
+	value = _values[key];
+	return true;
+}
+
+bool Configuration::getValue(const std::string &key, double &value)
+{
+	std::stringstream ss;
+
+	ss << _values[key];
+	ss >> value;
+
+	if(ss.fail())
+		return false;
+
+	return true;
+}
 
 /* Add new value to the configuration
  * REQUIRES:
@@ -231,17 +245,57 @@ bool Configuration::getValue(const std::string &key, double &value);
  * RETURNS:
  * 		errCode
  */
-int Configuration::setNewValue(const std::string &key, const int &value);
-int Configuration::setNewValue(const std::string &key, const std::string &value);
-int Configuration::setNewValue(const std::string &key, const double &value);
+int Configuration::setNewValue(const std::string &key, const int &value)
+{
+	std::stringstream ss;
+
+	ss << value;
+
+	if(ss.fail())
+			return -1;
+
+	_values[key] = ss.str();
+
+	return 0;
+}
+
+int Configuration::setNewValue(const std::string &key, const std::string &value)
+{
+	_values[key] = value;
+
+	return 0;
+}
+
+int Configuration::setNewValue(const std::string &key, const double &value)
+{
+	std::stringstream ss;
+
+	ss << value;
+
+	if(ss.fail())
+			return -1;
+
+	_values[key] = ss.str();
+
+	return 0;
+}
+
 
 /* Check if exists some key (value) in the configuration
  * RETURNS:
  * 		true	if exists
  * 		false	otherwise
  */
-bool exists(const std::string &key);
+bool Configuration::exists(const std::string &key)
+{
+	return (_values.find(key) != _values.end());
+}
 
+/* Removes a value from the configuration */
+void Configuration::removeValue(const std::string &key)
+{
+	_values.erase(key);
+}
 
 
 Configuration::~Configuration() {
